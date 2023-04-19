@@ -1,0 +1,21 @@
+{
+  "name": "testing-with-playwrite",
+  "version": "1.0.0",
+  "description": "Testing with Playwrite",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erandro/testing-with-playwrite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/erandro/testing-with-playwrite/issues"
+  },
+  "homepage": "https://github.com/erandro/testing-with-playwrite#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.32.3"
+  }
+}
