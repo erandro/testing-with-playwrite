@@ -75,7 +75,7 @@ test.skip('Browser context playwright test (with server service)', async ({page}
 
 });
 
-test('UI controls', async ({browser}) => {
+test.skip('UI controls', async ({browser}) => {
 
     const context = await browser.newContext();
     const page = await context.newPage();
@@ -86,6 +86,44 @@ test('UI controls', async ({browser}) => {
     await userName.fill('rahulshetty');
     await password.fill('learning');
     
+    // selcting from select (dropdown) menu:
     const dropDownSelection = page.locator('select.form-control');
-    dropDownSelection.selectOption('teach');
-}); 
+    await dropDownSelection.selectOption('teach');
+
+    // selecting from a radio button:
+    const radioButtonUser = page.locator('.radiotextsty').last();
+    radioButtonUser.click();
+    await page.locator('#okayBtn').click();
+    expect(radioButtonUser).toBeChecked();
+    // We can also do 'radioButtonUser.isChecked()' which will return a 'true' in this case
+
+    const checkBoxTerms = page.locator('input#terms');
+    await checkBoxTerms.check();
+    expect(checkBoxTerms).toBeChecked();
+    await checkBoxTerms.uncheck();
+    expect(checkBoxTerms).not.toBeChecked();
+    // We can also do 'expect( await checkBoxTerms.isChecked() ).toBeFalsy();'
+    // Note that the 'await' above is inside the 'expect()' and not before it. This is because the action of the '.isChecked()' is done inside the expect and not outside.
+
+    const blinkLink = page.locator("[href*='documents-request']");
+    await expect(blinkLink).toHaveAttribute('class', 'blinkingText');
+});
+
+test('Child window handaling', async ({browser}) =>{
+
+    const context = await browser.newContext();
+    const page = await context.newPage();
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise");
+    const blinkLink = page.locator("[href*='documents-request']");
+
+    const [newPage] = await Promise.all([
+        context.waitForEvent('page'),
+        blinkLink.click(),
+    ]);
+    const redParagraph = await newPage.locator('.red').textContent();
+    const domain = redParagraph.split('@')[1].split(' ')[0];
+
+    const userName = page.locator('#username');
+    await userName.fill(domain);
+    await page.pause();
+})
