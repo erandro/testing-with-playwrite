@@ -1,13 +1,13 @@
 const {test, expect} = require('@playwright/test');
 
-test.skip('Page playwright test', async ({page}) => {
+test('Page playwright test', async ({page}) => {
 
     await page.goto("http://www.google.com/");
     console.log(await page.title());
     await expect(page).toHaveTitle("Google");
 });
 
-test.skip('Browser context playwright test (no server service)', async ({browser}) => {
+test('Browser context playwright test (no server service)', async ({browser}) => {
 
     const context = await browser.newContext();
     const page = await context.newPage();
@@ -55,7 +55,7 @@ test.skip('Browser context playwright test (no server service)', async ({browser
 
 });
 
-test.skip('Browser context playwright test (with server service)', async ({page}) => {
+test('Browser context playwright test (with server service)', async ({page}) => {
 
     await page.goto("http://www.rahulshettyacademy.com/client");
 
@@ -75,7 +75,7 @@ test.skip('Browser context playwright test (with server service)', async ({page}
 
 });
 
-test.skip('UI controls', async ({browser}) => {
+test('UI controls', async ({browser}) => {
 
     const context = await browser.newContext();
     const page = await context.newPage();
@@ -109,7 +109,7 @@ test.skip('UI controls', async ({browser}) => {
     await expect(blinkLink).toHaveAttribute('class', 'blinkingText');
 });
 
-test.skip('Child window handaling', async ({browser}) =>{
+test('Child window handaling', async ({browser}) =>{
 
     const context = await browser.newContext();
     const page = await context.newPage();
