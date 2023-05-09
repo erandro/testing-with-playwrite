@@ -23,6 +23,9 @@ test('Dealing with alerts/confirms popups', async ({ page }) => {
     const confirmButton = page.locator('#confirmbtn');
     page.on('dialog', dialog => dialog.accept())
     await alertButton.click();
+    // page.on("dialog", async (alert) => {
+    //     await alert.dismiss();
+    // })
     // page.on('dialog', dialog => dialog.dismiss())
     await confirmButton.click();
 });
@@ -33,11 +36,13 @@ test('Hover', async ({ page }) => {
     await page.locator('#mousehover').hover();
 });
 
-// test.only('Dealing with iFrames', async ({ page }) => {
-//     await page.goto('http://www.rahulshettyacademy.com/AutomationPractice/');
+test('Dealing with iFrames', async ({ page }) => {
+    await page.goto('http://www.rahulshettyacademy.com/AutomationPractice/');
 
-//     const framePage = page.frameLocator('#courses-iframe');
-//     await framePage.locator('li a[href*="lifetime-access"]:visible').click()
-//     const textCheck = await framePage.locator('.text h2').textContent()
-//     console.log(textCheck.split(' ')[1])
-// });
+    const framePage = page.frameLocator('#courses-iframe');
+    await page.locator('#courses-iframe').scrollIntoViewIfNeeded();
+    const lifeTimeAccessLink = framePage.locator('li a[href*="lifetime-access"]:visible');
+    await lifeTimeAccessLink.click()
+    const textCheck = await framePage.locator('.text h2').textContent()
+    console.log(textCheck.split(' ')[1])
+});
