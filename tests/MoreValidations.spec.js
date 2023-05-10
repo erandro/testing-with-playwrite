@@ -41,8 +41,22 @@ test('Dealing with iFrames', async ({ page }) => {
 
     const framePage = page.frameLocator('#courses-iframe');
     await page.locator('#courses-iframe').scrollIntoViewIfNeeded();
-    const lifeTimeAccessLink = framePage.locator('li a[href*="lifetime-access"]:visible');
-    await lifeTimeAccessLink.click()
+    await framePage.locator('li a[href*="lifetime-access"]:visible').click({
+        delay: 100,
+    });
     const textCheck = await framePage.locator('.text h2').textContent()
     console.log(textCheck.split(' ')[1])
+});
+
+test.only('Screenshots & visual comparision', async ({ page }) => {
+    await page.goto('http://www.rahulshettyacademy.com/AutomationPractice/');
+    const displayText = page.locator('#displayed-text');
+    await expect(displayText).toBeVisible();
+    // await displayText.screenshot({path: 'screenshot1.png'});
+    await page.locator('#hide-textbox').click();
+    // await page.screenshot({path: 'screenshot.png'});
+    await expect(displayText).toBeHidden();
+
+    // this is going to fail for the first time with "Error: A snapshot doesn't exist at [path]" but it will work on second time 
+    expect(await page.screenshot()).toMatchSnapshot('hiddenButton.png');
 });

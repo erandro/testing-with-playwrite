@@ -11,6 +11,9 @@ test('Browser context playwright test (no server service)', async ({browser}) =>
 
     const context = await browser.newContext();
     const page = await context.newPage();
+    // page.route('**/*.{jpg,jpeg,png}', route => route.abort());
+    // page.on('request', request => console.log(request.url()));
+    page.on('response', response => console.log(response.url(), response.status()));
     await page.goto("https://rahulshettyacademy.com/loginpagePractise");
     console.log(await page.title());
 
