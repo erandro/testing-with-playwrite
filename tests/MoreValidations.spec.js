@@ -48,7 +48,7 @@ test('Dealing with iFrames', async ({ page }) => {
     console.log(textCheck.split(' ')[1])
 });
 
-test.only('Screenshots & visual comparision', async ({ page }) => {
+test('Screenshots & visual comparision', async ({ page }) => {
     await page.goto('http://www.rahulshettyacademy.com/AutomationPractice/');
     const displayText = page.locator('#displayed-text');
     await expect(displayText).toBeVisible();
