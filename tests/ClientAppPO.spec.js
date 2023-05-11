@@ -36,7 +36,7 @@ for (const data of dataSet) {
     });
 }
 
-costomTest.only(`Client App login`, async ({ page, testDataFroOrder }) => {
+costomTest(`Client App login`, async ({ page, testDataFroOrder }) => {
 
     const poManager = new POManager(page);
 
