@@ -15,7 +15,7 @@ test.beforeAll( async ({browser}) =>  {
     webContext = await browser.newContext({storageState: 'state.json'});
 });
 
-test('Print titltes', async () => {
+test('@API Print titltes', async () => {
 
     const page = await webContext.newPage();
     await page.goto("http://www.rahulshettyacademy.com/client");
@@ -25,7 +25,7 @@ test('Print titltes', async () => {
     console.log(titles)
 });
 
-test('Print titles again', async () => {
+test('@API Print titles again', async () => {
 
     const page = await webContext.newPage();
     await page.goto("http://www.rahulshettyacademy.com/client");

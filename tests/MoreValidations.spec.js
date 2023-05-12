@@ -1,5 +1,7 @@
 const { test, expect } = require('@playwright/test');
 
+// test.describe.configure({ mode: 'serial' });
+
 test('Navigating back and forward on the browser', async ({ page }) => {
     await page.goto('http://www.rahulshettyacademy.com/AutomationPractice/');
     await page.goto('https://google.com');
