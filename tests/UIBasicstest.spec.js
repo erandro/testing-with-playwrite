@@ -128,7 +128,7 @@ test('Child window handaling', async ({browser}) =>{
 
     const userName = page.locator('#username');
     await userName.fill(domain);
-    await page.pause();
+    // await page.pause();
 })
 
 test('Happy path', async ({page}) => {

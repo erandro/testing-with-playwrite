@@ -3,7 +3,11 @@
   "version": "1.0.0",
   "description": "Testing with Playwrite",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "regression": "npm playwright test",
+    "webTests": "npm playwright test --grep '@Web'",
+    "APITests": "npm playwright test --grep '@API'"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/erandro/testing-with-playwrite.git"
@@ -16,6 +20,7 @@
   },
   "homepage": "https://github.com/erandro/testing-with-playwrite#readme",
   "devDependencies": {
-    "@playwright/test": "^1.32.3"
+    "@playwright/test": "^1.33.0",
+    "allure-playwright": "^2.3.0"
   }
 }
