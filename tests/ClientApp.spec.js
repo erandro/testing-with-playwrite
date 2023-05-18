@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-test.skip('@Gen Client App login', async ({ page }) => {
+test('@Gen Client App login', async ({ page }) => {
     //js file- Login js, DashboardPage
     const email = "rahulshetty@gmail.com";
     const productName = 'zara coat 3';
